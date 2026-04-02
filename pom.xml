@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.czeczotka.bdd</groupId>
+	<artifactId>cucumber-jvm-maven4_5</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>cucumber-jvm-maven</name>
+	<url>http://maven.apache.org</url>
+    <properties>
+        <java.version>25</java.version>
+    </properties>
+	<dependencies>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-jvm-deps</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+            <version>4.5.1</version>
+            <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>4.5.1</version>
+			<scope>test</scope>
+		</dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.14.0</version> <!-- Use the latest version -->
+        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<pluginRepositories>
+	<pluginRepository>
+		<id>qmetrytestmanager-mvn-repo</id>
+		<name>QMetry Test Manager Maven Repository</name>
+		<url>https://raw.github.com/qmetry/qtm4j-maven-uploader/mvn-repo/</url>
+		<releases>
+			<enabled>true</enabled>
+			<updatePolicy>always</updatePolicy>
+		</releases>
+	</pluginRepository>
+</pluginRepositories>
+	<build>
+		<plugins>
+                    <!-- maven compiler plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.11.0</version>
+                    </plugin>
+                    <!-- plugin to create a maven site -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>4.0.0-M12</version>
+                    </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+                </configuration>
+				<version>3.5.4</version>
+			</plugin>
+			<plugin>
+			<groupId>com.qmetry</groupId>
+			<artifactId>automation</artifactId>
+			<version>1.0.3</version>
+			<executions>
+				<execution>
+					<phase>test</phase>
+					<goals>
+						<goal>CucumberFileUpload</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		</plugins>
+	</build>
+</project>
