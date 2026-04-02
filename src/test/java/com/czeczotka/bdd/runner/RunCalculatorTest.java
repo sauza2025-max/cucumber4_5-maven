@@ -9,8 +9,7 @@ import org.junit.runner.RunWith;
 		  features = "classpath:cucumber/calculator.feature" ,
 		  glue = "com.czeczotka.bdd.steps",
 		monochrome = true,
-        plugin = {"pretty"}
-
+        plugin = {"pretty", "html:target/site/cucumber-pretty", "json:target/cucumber.json"}
 )
 public class RunCalculatorTest {
 }
